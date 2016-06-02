@@ -31,6 +31,7 @@
     <module>treat-message</module>
     <module>treat-admin</module>
     <module>treat-h5</module>
+    <module>treat-build</module>
   </modules>
 
 
