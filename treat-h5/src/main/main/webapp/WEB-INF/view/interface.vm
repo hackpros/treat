@@ -1,0 +1,25 @@
+
+    <hr/>
+                <div title="Home">
+				<div class="cs-home-remark">
+				
+				 <a href="$request.contextPath/gifts/share/6432/15617">/gifts/share/6432/15617  礼物分享</a></br>
+				 <a href="$request.contextPath/gifts/share/receive/6432/15617?mobile=15923143456">gifts/share/receive/6432/15117?mobile=15923143456 抢过了</a></br>
+				 <a href="$request.contextPath/gifts/share/6432/15617">/gifts/share/6432/15117  礼物已被抢光了</a></br>
+				
+				
+	 		     <a href="$request.contextPath/gifts/share/5843/15617/13523652563/1234">/gifts/share/5843/15117/1350263/1234  礼物领取</a>	    </br>
+	 		    <hr/>
+	 		     <a href="$request.contextPath/treat/6413/15617">/treat/6414/15617  线下活动</a>	    </br>
+	 		     <a href="$request.contextPath/treat/online/6413/15617">/treat/online/6413/15617  线上活动	    </br>
+				 <hr/>
+				 <a href="$request.contextPath/user/15617">/user/12516  用户详情页</a>	    </br>
+	 		     <a href="$request.contextPath/show/15617/1393">show/12516/1365 秀场动态    </br>
+				 
+				 <hr/>
+	 		     <a href="$request.contextPath/user/invite/15617"＞</a>user/invite/12516　邀请下载</br>
+				 <a href="$request.contextPath/sysGiftOne/1">sysGiftOne/1 系统活动 </a></br>
+
+
+				</div>
+				</div>

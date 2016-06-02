@@ -1,0 +1,37 @@
+#parse( 'global/header.vm' )
+
+<script type="text/javascript">
+</script>
+<title>velocity 工具类</title>
+<body>
+	#macro(br)
+		<br/>
+	#end
+	<hr>
+	<--1  系统选项缓存类-->	#br()
+	$esc.html('<tool key="scm" class="com.cnnct.velocity.function.SysOptFunVC"/>')#br()
+	$esc.html('$scm.getOption("jack")') : $scm.getOption('jack')#br()
+    <hr>
+    <--2 字符转义类-->#br()
+    $esc.html('<tool key="esc" class="org.apache.velocity.tools.generic.EscapeTool"/>')#br()
+	$esc.html('$esc.h') :$esc.h#br()
+	$esc.html('$esc.html("<>")') : $esc.html("<>")#br()
+    <hr>
+    <--3 自定义常量类-->#br()
+    $esc.html('<tool key="constant" class="com.cnnct.velocity.Constant"/>')#br()
+	$constant.VERSION
+  	<hr>
+	<--4 velocitybools2.0 自带工具类　时间-->#br()
+    $esc.html('<tool key="constant" class="com.cnnct.velocity.Constant"/>')#br()
+	 $esc.html('$date ') : $date #br()
+     $esc.html('$date.long') :  $date.long #br()
+  	<hr>
+#br()
+<>
+#cache("News","home") 
+
+#end
+	
+</body>
+</html>
+

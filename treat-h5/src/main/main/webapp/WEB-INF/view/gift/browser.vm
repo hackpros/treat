@@ -1,0 +1,74 @@
+#parse( 'global/header.vm' )
+
+<head>
+    <meta charset="utf-8" />
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title></title>
+    <link href="$static_resource/css/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="login-bg" id="baseInfoVue">
+    <div class="login-userinfo">
+        <img  class="user-icon" src="${shareGiftRes.headIcon}" alt=""/>
+        <div class="user-text">
+            ${shareGiftRes.nickName} <img class="gif-icon" src="$static_resource/image/gif.png" alt=""/><span class="giftext">送您礼物</span>
+        </div>
+    </div>
+    <form action="$request.contextPath/gifts/share/receive/${shareGiftRes.actId}/${shareGiftRes.userId}">
+        <div class="login-plane">
+            <div class="info-num-box">
+                <div class="info-num">
+                 +86
+                </div>
+                <input type="number" name="mobile" id="phone-num"  placeholder = "请输入您的手机号码" class="info-num-input" required/>
+                <a class="clear"></a>
+            </div>
+            <div class="info-nick-box">
+                <div class="info-nick">
+                    <img src="$static_resource/image/nick.png" alt=""/>
+                </div>
+                <input type="text"  placeholder = "匿名" class="info-nick-input" required /><a class="clear"></a>
+            </div>
+            <input type="submit" id="submit-but" class="login-button" value="立即领取">
+        </div>
+    </form>
+
+</div>
+</body>
+	<script>
+	    $(function(){
+	        $("form").submit(function(e){
+	            var phoneNum = $("#phone-num").val();
+	            var telReg = !!phoneNum.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+	            if(telReg == false){
+	                alert("请输入正确的手机号码")
+	                return false;
+	            }
+	        });
+	    })
+
+
+
+	    function   ages(str)
+	    {
+	        var   r   =   str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+	        if(r==null)return   false;
+	        var   d=   new   Date(r[1],   r[3]-1,   r[4]);
+	        if   (d.getFullYear()==r[1]&&(d.getMonth()+1)==r[3]&&d.getDate()==r[4])
+	        {
+	            var   Y   =   new   Date().getFullYear();
+	            return("年龄   =   "+   (Y-r[1])   +"   周岁");
+	        }
+	        return("输入的日期格式错误！");
+	    }
+	   // alert(ages("1987-01-20"));
+
+	</script>
+
+</html>
+
+
+

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+
+<tools>
+  <data key="author">rabbit</data>
+    
+  <toolbox scope="session" locale="en_US">
+    <tool class="org.apache.velocity.tools.view.BrowserTool" languagesFilter="en"/>
+  </toolbox>
+
+  <toolbox scope="application">
+   
+    <tool key="sof" class="com.navigate.treat.h5.config.SysOptFunVC"/>
+    <!--系统选项缓存类-->	
+    <tool key="self" class="com.navigate.treat.h5.config.SelfVmFunc"/>
+    
+    <!--velocitybools2.0 自带工具类　时间-->
+    <tool key="date" scope="application" class="org.apache.velocity.tools.generic.DateTool" > 
+		<parameter name="format" value="yyyy-M-d"/> 
+   </tool> 
+
+    <!--同上-->
+    <tool key="esc" class="org.apache.velocity.tools.generic.EscapeTool"/>
+    
+    <!--自定义常量类-->
+    <!-- <tool key="constant" class="com.mrfan.velocity.Constant"/> -->
+  
+  </toolbox>
+  
+  
+  
+
+
+</tools>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties>  		
+   		<property name="dialect" value="MYSQL"/>
+    </properties>
+    
+    
+    <settings>
+        <!-- changes from the defaults for testing 
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="defaultExecutorType" value="REUSE"/>
+        <setting name="lazyLoadingEnabled" value="false"/>
+        -->
+        <setting name="defaultExecutorType" value="REUSE" />
+	    <setting name="lazyLoadingEnabled" value="true"/>
+	    <setting name="aggressiveLazyLoading" value="false"/>
+	    <setting name="logImpl" value="SLF4J"/>
+    </settings>
+    <!-- 
+    <plugins>  
+    	<plugin interceptor="com.xxyd.mybatis.interceptor.PaginationInterceptor"></plugin>  
+    </plugins>
+    
+     -->
+    <typeAliases>
+          <!--
+      通过package, 可以直接指定package的名字， mybatis会自动扫描你指定包下面的javabean,
+      并且默认设置一个别名，默认的名字为： javabean 的首字母小写的非限定类名来作为它的别名。
+           也可在javabean 加上注解@Alias 来自定义别名， 例如： @Alias(user) 
+     自动扫描包：<package name="com.dy.entity"/>
+     配置单个实体类<typeAlias alias="UserEntity" type="com.dy.entity.User"/>
+      <package name="com.navigate.treat.po.multi"/>
+     -->
+      <package name="com.navigate.treat.po"/>
+  	</typeAliases>
+    
+</configuration>

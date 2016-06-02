@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.basic.ActivitysMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.basic.Activitys" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="theme" property="theme" jdbcType="VARCHAR" />
+        <result column="treatWay" property="treatWay" jdbcType="INTEGER" />
+        <result column="actTime" property="actTime" jdbcType="TIMESTAMP" />
+        <result column="amountSecured" property="amountSecured" jdbcType="DECIMAL" />
+        <result column="subsidies" property="subsidies" jdbcType="DECIMAL" />
+        <result column="briefDesc" property="briefDesc" jdbcType="VARCHAR" />
+        <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="actStatus" property="actStatus" jdbcType="INTEGER" />
+        <result column="bizId" property="bizId" jdbcType="BIGINT" />
+        <result column="bizName" property="bizName" jdbcType="VARCHAR" />
+        <result column="bizAddr" property="bizAddr" jdbcType="VARCHAR" />
+        <result column="bizIcon" property="bizIcon" jdbcType="VARCHAR" />
+        <result column="bizCategory" property="bizCategory" jdbcType="VARCHAR" />
+        <result column="bizLng" property="bizLng" jdbcType="VARCHAR" />
+        <result column="bizLat" property="bizLat" jdbcType="VARCHAR" />
+        <result column="bizRate" property="bizRate" jdbcType="VARCHAR" />
+        <result column="bizAvg" property="bizAvg" jdbcType="VARCHAR" />
+        <result column="browseNum" property="browseNum" jdbcType="BIGINT" />
+        <result column="orderNum" property="orderNum" jdbcType="VARCHAR" />
+        <result column="userLng" property="userLng" jdbcType="VARCHAR" />
+        <result column="userLat" property="userLat" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, userId, theme, treatWay, actTime, amountSecured, subsidies, briefDesc, mtime, 
+        ctime, actStatus, bizId, bizName, bizAddr, bizIcon, bizCategory, bizLng, bizLat, 
+        bizRate, bizAvg, browseNum, orderNum, userLng, userLat
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.basic.ActivitysQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from activitys
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from activitys
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.basic.Activitys" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into activitys (id, userId, theme, 
+            treatWay, actTime, amountSecured, 
+            subsidies, briefDesc, mtime, 
+            ctime, actStatus, bizId, 
+            bizName, bizAddr, bizIcon, 
+            bizCategory, bizLng, bizLat, 
+            bizRate, bizAvg, browseNum, 
+            orderNum, userLng, userLat
+            )
+        values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{theme,jdbcType=VARCHAR}, 
+            #{treatWay,jdbcType=INTEGER}, #{actTime,jdbcType=TIMESTAMP}, #{amountSecured,jdbcType=DECIMAL}, 
+            #{subsidies,jdbcType=DECIMAL}, #{briefDesc,jdbcType=VARCHAR}, #{mtime,jdbcType=TIMESTAMP}, 
+            #{ctime,jdbcType=TIMESTAMP}, #{actStatus,jdbcType=INTEGER}, #{bizId,jdbcType=BIGINT}, 
+            #{bizName,jdbcType=VARCHAR}, #{bizAddr,jdbcType=VARCHAR}, #{bizIcon,jdbcType=VARCHAR}, 
+            #{bizCategory,jdbcType=VARCHAR}, #{bizLng,jdbcType=VARCHAR}, #{bizLat,jdbcType=VARCHAR}, 
+            #{bizRate,jdbcType=VARCHAR}, #{bizAvg,jdbcType=VARCHAR}, #{browseNum,jdbcType=BIGINT}, 
+            #{orderNum,jdbcType=VARCHAR}, #{userLng,jdbcType=VARCHAR}, #{userLat,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.navigate.treat.beans.basic.Activitys" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into activitys
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            id,
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="theme != null" >
+                theme,
+            </if>
+            <if test="treatWay != null" >
+                treatWay,
+            </if>
+            <if test="actTime != null" >
+                actTime,
+            </if>
+            <if test="amountSecured != null" >
+                amountSecured,
+            </if>
+            <if test="subsidies != null" >
+                subsidies,
+            </if>
+            <if test="briefDesc != null" >
+                briefDesc,
+            </if>
+            <if test="mtime != null" >
+                mtime,
+            </if>
+            <if test="ctime != null" >
+                ctime,
+            </if>
+            <if test="actStatus != null" >
+                actStatus,
+            </if>
+            <if test="bizId != null" >
+                bizId,
+            </if>
+            <if test="bizName != null" >
+                bizName,
+            </if>
+            <if test="bizAddr != null" >
+                bizAddr,
+            </if>
+            <if test="bizIcon != null" >
+                bizIcon,
+            </if>
+            <if test="bizCategory != null" >
+                bizCategory,
+            </if>
+            <if test="bizLng != null" >
+                bizLng,
+            </if>
+            <if test="bizLat != null" >
+                bizLat,
+            </if>
+            <if test="bizRate != null" >
+                bizRate,
+            </if>
+            <if test="bizAvg != null" >
+                bizAvg,
+            </if>
+            <if test="browseNum != null" >
+                browseNum,
+            </if>
+            <if test="orderNum != null" >
+                orderNum,
+            </if>
+            <if test="userLng != null" >
+                userLng,
+            </if>
+            <if test="userLat != null" >
+                userLat,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{id,jdbcType=BIGINT},
+            <if test="userId != null" >
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="theme != null" >
+                #{theme,jdbcType=VARCHAR},
+            </if>
+            <if test="treatWay != null" >
+                #{treatWay,jdbcType=INTEGER},
+            </if>
+            <if test="actTime != null" >
+                #{actTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="amountSecured != null" >
+                #{amountSecured,jdbcType=DECIMAL},
+            </if>
+            <if test="subsidies != null" >
+                #{subsidies,jdbcType=DECIMAL},
+            </if>
+            <if test="briefDesc != null" >
+                #{briefDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="mtime != null" >
+                #{mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ctime != null" >
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="actStatus != null" >
+                #{actStatus,jdbcType=INTEGER},
+            </if>
+            <if test="bizId != null" >
+                #{bizId,jdbcType=BIGINT},
+            </if>
+            <if test="bizName != null" >
+                #{bizName,jdbcType=VARCHAR},
+            </if>
+            <if test="bizAddr != null" >
+                #{bizAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="bizIcon != null" >
+                #{bizIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="bizCategory != null" >
+                #{bizCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="bizLng != null" >
+                #{bizLng,jdbcType=VARCHAR},
+            </if>
+            <if test="bizLat != null" >
+                #{bizLat,jdbcType=VARCHAR},
+            </if>
+            <if test="bizRate != null" >
+                #{bizRate,jdbcType=VARCHAR},
+            </if>
+            <if test="bizAvg != null" >
+                #{bizAvg,jdbcType=VARCHAR},
+            </if>
+            <if test="browseNum != null" >
+                #{browseNum,jdbcType=BIGINT},
+            </if>
+            <if test="orderNum != null" >
+                #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="userLng != null" >
+                #{userLng,jdbcType=VARCHAR},
+            </if>
+            <if test="userLat != null" >
+                #{userLat,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.basic.ActivitysQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from activitys
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update activitys
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userId != null" >
+                userId = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.theme != null" >
+                theme = #{record.theme,jdbcType=VARCHAR},
+            </if>
+            <if test="record.treatWay != null" >
+                treatWay = #{record.treatWay,jdbcType=INTEGER},
+            </if>
+            <if test="record.actTime != null" >
+                actTime = #{record.actTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.amountSecured != null" >
+                amountSecured = #{record.amountSecured,jdbcType=DECIMAL},
+            </if>
+            <if test="record.subsidies != null" >
+                subsidies = #{record.subsidies,jdbcType=DECIMAL},
+            </if>
+            <if test="record.briefDesc != null" >
+                briefDesc = #{record.briefDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mtime != null" >
+                mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.actStatus != null" >
+                actStatus = #{record.actStatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.bizId != null" >
+                bizId = #{record.bizId,jdbcType=BIGINT},
+            </if>
+            <if test="record.bizName != null" >
+                bizName = #{record.bizName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bizAddr != null" >
+                bizAddr = #{record.bizAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bizIcon != null" >
+                bizIcon = #{record.bizIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bizCategory != null" >
+                bizCategory = #{record.bizCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bizLng != null" >
+                bizLng = #{record.bizLng,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bizLat != null" >
+                bizLat = #{record.bizLat,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bizRate != null" >
+                bizRate = #{record.bizRate,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bizAvg != null" >
+                bizAvg = #{record.bizAvg,jdbcType=VARCHAR},
+            </if>
+            <if test="record.browseNum != null" >
+                browseNum = #{record.browseNum,jdbcType=BIGINT},
+            </if>
+            <if test="record.orderNum != null" >
+                orderNum = #{record.orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userLng != null" >
+                userLng = #{record.userLng,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userLat != null" >
+                userLat = #{record.userLat,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update activitys
+        set id = #{record.id,jdbcType=BIGINT},
+            userId = #{record.userId,jdbcType=BIGINT},
+            theme = #{record.theme,jdbcType=VARCHAR},
+            treatWay = #{record.treatWay,jdbcType=INTEGER},
+            actTime = #{record.actTime,jdbcType=TIMESTAMP},
+            amountSecured = #{record.amountSecured,jdbcType=DECIMAL},
+            subsidies = #{record.subsidies,jdbcType=DECIMAL},
+            briefDesc = #{record.briefDesc,jdbcType=VARCHAR},
+            mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            actStatus = #{record.actStatus,jdbcType=INTEGER},
+            bizId = #{record.bizId,jdbcType=BIGINT},
+            bizName = #{record.bizName,jdbcType=VARCHAR},
+            bizAddr = #{record.bizAddr,jdbcType=VARCHAR},
+            bizIcon = #{record.bizIcon,jdbcType=VARCHAR},
+            bizCategory = #{record.bizCategory,jdbcType=VARCHAR},
+            bizLng = #{record.bizLng,jdbcType=VARCHAR},
+            bizLat = #{record.bizLat,jdbcType=VARCHAR},
+            bizRate = #{record.bizRate,jdbcType=VARCHAR},
+            bizAvg = #{record.bizAvg,jdbcType=VARCHAR},
+            browseNum = #{record.browseNum,jdbcType=BIGINT},
+            orderNum = #{record.orderNum,jdbcType=VARCHAR},
+            userLng = #{record.userLng,jdbcType=VARCHAR},
+            userLat = #{record.userLat,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.basic.Activitys" >
+        update activitys
+        <set >
+            <if test="userId != null" >
+                userId = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="theme != null" >
+                theme = #{theme,jdbcType=VARCHAR},
+            </if>
+            <if test="treatWay != null" >
+                treatWay = #{treatWay,jdbcType=INTEGER},
+            </if>
+            <if test="actTime != null" >
+                actTime = #{actTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="amountSecured != null" >
+                amountSecured = #{amountSecured,jdbcType=DECIMAL},
+            </if>
+            <if test="subsidies != null" >
+                subsidies = #{subsidies,jdbcType=DECIMAL},
+            </if>
+            <if test="briefDesc != null" >
+                briefDesc = #{briefDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="mtime != null" >
+                mtime = #{mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="actStatus != null" >
+                actStatus = #{actStatus,jdbcType=INTEGER},
+            </if>
+            <if test="bizId != null" >
+                bizId = #{bizId,jdbcType=BIGINT},
+            </if>
+            <if test="bizName != null" >
+                bizName = #{bizName,jdbcType=VARCHAR},
+            </if>
+            <if test="bizAddr != null" >
+                bizAddr = #{bizAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="bizIcon != null" >
+                bizIcon = #{bizIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="bizCategory != null" >
+                bizCategory = #{bizCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="bizLng != null" >
+                bizLng = #{bizLng,jdbcType=VARCHAR},
+            </if>
+            <if test="bizLat != null" >
+                bizLat = #{bizLat,jdbcType=VARCHAR},
+            </if>
+            <if test="bizRate != null" >
+                bizRate = #{bizRate,jdbcType=VARCHAR},
+            </if>
+            <if test="bizAvg != null" >
+                bizAvg = #{bizAvg,jdbcType=VARCHAR},
+            </if>
+            <if test="browseNum != null" >
+                browseNum = #{browseNum,jdbcType=BIGINT},
+            </if>
+            <if test="orderNum != null" >
+                orderNum = #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="userLng != null" >
+                userLng = #{userLng,jdbcType=VARCHAR},
+            </if>
+            <if test="userLat != null" >
+                userLat = #{userLat,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from activitys
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.basic.ActivitysQueryHelper" >
+        delete from activitys
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

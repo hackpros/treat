@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	default-autowire="byName">
+
+	<!--<import resource="spring-beans.xml" />
+	 <import resource="spring-memcache.xml" /> -->
+	<import resource="dataSource-basic.xml" />
+	<import resource="dataSource-user.xml" />
+	<import resource="spring-annotation-driven.xml" />
+	<import resource="spring-main.xml" />
+
+    
+        
+
+</beans> 

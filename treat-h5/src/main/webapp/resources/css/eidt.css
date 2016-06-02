@@ -1,0 +1,100 @@
+body {
+  margin: 0 auto;
+  width: 10rem;
+  font-family: "Helvetica Neue Light", Arial;
+  -webkit-font-smoothing: antialiased;
+  background: #eeedeb;
+}
+
+html {
+  background: #eeedeb;
+}
+
+.fx {
+  clear: both;
+}
+
+.fm {
+  font-family: arial;
+}
+
+.hide {
+  display: none !important;
+}
+
+
+
+
+
+
+
+.c_r {
+  color: #f8382b;
+}
+.edit-info {
+  background-color: #fff;
+  min-height: 9.6rem;
+  width: 10rem;
+  border: 0;
+  padding: 0.133333rem;
+}
+
+.down-but {
+  background: url("../image/edit-but.png") no-repeat;
+  width: 7.333333rem;
+  height: 1.2rem;
+  line-height: 1.066667rem;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  background-size: 100% 100%;
+  margin: 0.333333rem auto;
+}
+
+[data-dpr="1"] .fz34 {
+  font-size: 17px;
+}
+
+[data-dpr="2"] .fz34 {
+  font-size: 34px;
+}
+
+[data-dpr="3"] .fz34 {
+  font-size: 51px;
+}
+
+[data-dpr="1"] .fz30 {
+  font-size: 15px;
+}
+
+[data-dpr="2"] .fz30 {
+  font-size: 30px;
+}
+
+[data-dpr="3"] .fz30 {
+  font-size: 45px;
+}
+
+[data-dpr="1"] .fz28 {
+  font-size: 13px;
+}
+
+[data-dpr="2"] .fz28 {
+  font-size: 26px;
+}
+
+[data-dpr="3"] .fz28 {
+  font-size: 39px;
+}
+
+[data-dpr="1"] .down-but {
+  font-size: 17px;
+}
+
+[data-dpr="2"] .down-but {
+  font-size: 34px;
+}
+
+[data-dpr="3"] .down-but {
+  font-size: 51px;
+}

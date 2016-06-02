@@ -1,0 +1,30 @@
+#parse( 'global/header.vm' )
+<script type="text/javascript">
+</script>
+<body class="easyui-layout">
+	#parse( 'top.vm' )
+	
+	
+	<div id="mainPanle" region="center" border="true" border="false">
+		 <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
+			#parse( 'home.vm' )
+        </div>	
+    </div>
+	
+	<div region="center" border="true" border="false">
+		 <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
+			#parse( 'interface.vm' )
+        </div>	
+    </div>
+	
+	
+	<div region="center" border="true" border="false">
+		 <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
+			#parse( 'tplLogin.vm' )
+        </div>	
+    </div>
+	
+	
+#parse( 'global/footer.vm' )
+</body>
+</html>

@@ -1,0 +1,365 @@
+body {
+  margin: 0 auto;
+  width: 10rem;
+  font-family: "Helvetica Neue Light", Arial;
+  -webkit-font-smoothing: antialiased;
+  background: #f1f1f1;
+  padding-bottom: 0.4rem;
+}
+
+html {
+  background: #f1f1f1;
+}
+
+.fx {
+  clear: both;
+}
+
+.fm {
+  font-family: arial;
+}
+
+.hide {
+  display: none !important;
+}
+
+.box-warp {
+  width: 8.933333rem;
+  margin: auto;
+  padding: 0 0.266667rem;
+  background-color: #fff;
+  border-radius: 0.133333rem;
+  margin-top: 0.333333rem;
+}
+
+.box-warp .box-info-up {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  padding: 0.266667rem;
+  border-bottom: 1px solid #e1e1e4;
+}
+
+.box-warp .up-icon {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 100%;
+}
+
+.box-warp .up-right-warp {
+  padding: 0.266667rem 0 0 0.266667rem;
+  -webkit-box-flex: 1;
+}
+
+.box-warp .image-title {
+  width: 100%;
+  color: #363346;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.box-warp .up-image-list .img-li {
+  width: 2.266667rem;
+  height: 2.266667rem;
+  float: left;
+  margin-right: 0.133333rem;
+  margin-top: 0.133333rem;
+}
+
+.box-warp .up-time {
+  margin-top: 0.266667rem;
+  color: #9b99a3;
+}
+
+.box-warp .box-info-down {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: justify;
+  -webkit-box-align: center;
+  height: 1.2rem;
+}
+
+.box-warp .down-right {
+  display: -webkit-box;
+  -webkit-box-align: center;
+}
+
+.box-warp .down-right .zan-num {
+  display: block;
+  font-size: 0.346667rem ;
+  color: #9b99a3;
+  margin-right: 0.106667rem;
+  line-height: 1.2rem;
+}
+
+.box-warp .down-right .zan-img {
+  width: 1.08rem;
+  height: 1.08rem;
+}
+
+.box-warp .down-left {
+  color: #9b99a3;
+  margin-left: 0.266667rem;
+}
+
+.img-warp {
+  width: 9.466667rem;
+  margin: auto;
+  margin-top: 0.333333rem;
+}
+
+.img-warp .img-ul li {
+  width: 4.613333rem;
+  height: 6.4rem;
+  margin-bottom: 0.213333rem;
+  border-radius: 0.133333rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img-warp .img-ul li:nth-child(odd) {
+  float: left;
+}
+
+.img-warp .img-ul li:nth-child(even) {
+  float: right;
+}
+
+.login-warp {
+  /*  width: 750px;
+  height: 1334px;*/
+}
+
+.login-bg {
+  position: absolute;
+  background: url("../image/login-bg.png") no-repeat;
+  width: 10rem;
+  height: 17.786667rem;
+  top: 0;
+  left: 0;
+  padding-top: 0.026667rem;
+  background-size: 100% 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+.login-userinfo .user-icon {
+  display: block;
+  width: 1.226667rem;
+  height: 1.226667rem;
+  margin: auto;
+  margin-top: 6.666667rem;
+  border-radius: 100%;
+  border: 5px solid #fff;
+}
+
+.login-userinfo .user-text {
+  text-align: center;
+  margin-top: 0.106667rem;
+}
+
+.login-userinfo .giftext {
+  font-weight: bold;
+}
+
+.login-userinfo .gif-icon {
+  display: inline-block;
+  position: relative;
+  top: 0.066667rem;
+}
+
+.login-plane {
+  margin-top: 1.173333rem;
+  width: 6.293333rem;
+  margin: auto;
+}
+
+.login-plane .info-num-box {
+  position: relative;
+  width: 6.266667rem;
+  display: -webkit-box;
+  background-color: #fff;
+  margin-top: 1.2rem;
+}
+
+.login-plane .info-num {
+  width: 1.466667rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  background-color: #000011;
+  text-align: center;
+  background: #e8e8e8;
+}
+
+.login-plane .info-num-input {
+  background-color: #fff;
+  width: 4.466667rem;
+  height: 0.8rem;
+  border: 0;
+  padding-left: 0.333333rem;
+}
+
+.login-plane .info-nick-box {
+  width: 6.266667rem;
+  display: -webkit-box;
+  background-color: #fff;
+  margin-top: 0.56rem;
+  position: relative;
+}
+
+.login-plane .info-nick {
+  width: 1.466667rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  text-align: center;
+  background: #e8e8e8;
+}
+
+.login-plane .info-nick img {
+  display: block;
+  width: 0.68rem;
+  height: 0.68rem;
+  margin: auto;
+  margin-top: 0.066667rem;
+}
+
+.login-plane .info-nick-input {
+  background-color: #fff;
+  width: 4.466667rem;
+  height: 0.8rem;
+  border: 0;
+  padding-left: 0.333333rem;
+}
+
+.login-plane .login-button {
+  width: 2.8rem;
+  height: 1.066667rem;
+  padding-bottom: 0.133333rem;
+  /*
+    line-height: 70px;
+    */
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  background: url(../image/login-button1.png) no-repeat;
+  background-size: 100% 100%;
+  margin-top: 0.773333rem;
+  display: block;
+  border: 0;
+}
+
+.clear {
+  display: none;
+  position: absolute;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: url("../image/clear.png") no-repeat;
+  outline: none;
+  right: 0.093333rem;
+  top: 0.213333rem;
+  background-size: 100% 100%;
+}
+
+.info-num-input::-ms-clear {
+  display: none;
+}
+
+.info-num-input:valid + .clear {
+  display: inline;
+}
+
+.info-nick-input::-ms-clear {
+  display: none;
+}
+
+.info-nick-input:valid + .clear {
+  display: inline;
+}
+
+[data-dpr="1"] .box-warp .image-title {
+  font-size: 15px;
+}
+
+[data-dpr="2"] .box-warp .image-title {
+  font-size: 30px;
+}
+
+[data-dpr="3"] .box-warp .image-title {
+  font-size: 45px;
+}
+
+[data-dpr="1"] .box-warp .up-time {
+  font-size: 13px;
+}
+
+[data-dpr="2"] .box-warp .up-time {
+  font-size: 26px;
+}
+
+[data-dpr="3"] .box-warp .up-time {
+  font-size: 39px;
+}
+
+[data-dpr="1"] .box-warp .down-left {
+  font-size: 15px;
+}
+
+[data-dpr="2"] .box-warp .down-left {
+  font-size: 30px;
+}
+
+[data-dpr="3"] .box-warp .down-left {
+  font-size: 45px;
+}
+
+[data-dpr="1"] .login-userinfo .user-text {
+  font-size: 13px;
+}
+
+[data-dpr="2"] .login-userinfo .user-text {
+  font-size: 26px;
+}
+
+[data-dpr="3"] .login-userinfo .user-text {
+  font-size: 39px;
+}
+
+[data-dpr="1"] .login-userinfo .giftext {
+  font-size: 14px;
+}
+
+[data-dpr="2"] .login-userinfo .giftext {
+  font-size: 28px;
+}
+
+[data-dpr="3"] .login-userinfo .giftext {
+  font-size: 42px;
+}
+
+[data-dpr="1"] .login-plane {
+  font-size: 17px;
+}
+
+[data-dpr="2"] .login-plane {
+  font-size: 34px;
+}
+
+[data-dpr="3"] .login-plane {
+  font-size: 51px;
+}
+
+[data-dpr="1"] .login-plane .login-button {
+  font-size: 15px;
+}
+
+[data-dpr="2"] .login-plane .login-button {
+  font-size: 30px;
+}
+
+[data-dpr="3"] .login-plane .login-button {
+  font-size: 45px;
+}

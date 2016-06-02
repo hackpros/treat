@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+ <head>
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    ## 手机号,email无超链接
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title>关于我请客</title>
+ 	##<link href="$static_resource/css/eidt.css" rel="stylesheet" type="text/css" />
+ 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	## 适合手机窗口大小
+	<meta name="viewport"	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	##控制图片样式,不可以去掉
+	<style type="text/css">
+		p{
+			line-height:28px;
+			color:#A5A5A5;
+		}
+	</style>
+</head>
+<body>
+<div  id="baseInfoVue">
+<p>我请客是一款基于地理位置，以请客活动为主，旨在以请客的方式，利用手机的LBS功能，将陌生人聚集到一起，将线上的虚拟好友，通过请客活动的方式发展成为线下真实朋友的移动社交APP。</br>
+<br/>
+我请客给陌生人和半熟人提供一个良好的活动交友平台，它可以帮你快速的发现你附近各种有趣的活动，聚会及活动，丰富你的业余生活，让你的空闲时间不在寂寞无聊。</br>
+</br>
+我请客，不仅仅是请吃饭，更可以帮你轻松便捷的找到你附近的有缘人，同时你也可以在我请客平台上发起你感兴趣的活动或邀请附近和你志趣相投的陌生人和好友一起参加。</br>
+</br>
+我请客通过活动和聚会做为兴趣的切入点，快速的建立陌生人和半熟人之间的联系，让你随时随地，轻松快捷的找到新的朋友，找到你感兴趣的活动或聚会，让你和你的有缘人相聚在一起畅聊无阻。</br>
+</p>
+ <hr/>
+</br>
+<div style="line-height:28px;">
+我请客的使用场景：</br>
+1.	想跟心仪已久的邻家女孩搭讪，苦于不知如 何开口，发起一     个活动吧！</br>
+2.	约妹子（帅哥）看电影大片,发起一个活动 吧！</br>
+3.	周末无聊约妹子（帅哥）吃大铵，发起一个活动吧！</br>
+4.  自己旅行很孤独？发起一个活动吧！</br>
+5.  想打麻将三缺一，发起一个聚会吧！</br>
+6.  自驾游求驴友，发起一个活动吧！</br>
+</br>
+ <hr/>
+联系我们</br>
+Email:1652365129@qq.com&nbsp;&nbsp;QQ:1652365129</br>
+</div>
+</div>
+</body>
+</html>
+

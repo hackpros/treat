@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/cache
+           http://www.springframework.org/schema/cache/spring-cache.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/task 
+           http://www.springframework.org/schema/task/spring-task-3.0.xsd
+           ">
+ 
+    <!-- 引入jdbc配置文件 --> 
+    <context:property-placeholder location="classpath:jdbc.properties" />  
+ 	
+    <import resource="dataSource-basic.xml" />
+	<import resource="dataSource-user.xml" />
+	
+     
+  
+  
+  	<!-- 主数据库配置 -->
+  	
+    <!--创建jdbc数据源 
+    <bean id="dataSourceMaster"	class="com.alibaba.druid.pool.DruidDataSource"	destroy-method="close">
+        <property name="driverClassName"  value="${mysql.driverClassNameMaster}"></property>
+        <property name="url" value="${mysql.urlMaster}"></property>
+        <property name="username" value="${mysql.usernameMaster}"></property>
+        <property name="password" value="${mysql.passwordMaster}"></property>
+        <property name="filters" value="${mysql.filters}" />
+	    <property name="maxActive" value="${mysql.maxActive}" />
+	    <property name="initialSize" value="${mysql.initialSize}" />
+	    <property name="maxWait" value="${mysql.maxWait}" />
+	    <property name="minIdle" value="${mysql.minIdle}" />
+	    <property name="timeBetweenEvictionRunsMillis" value="${mysql.timeBetweenEvictionRunsMillis}" />
+	    <property name="minEvictableIdleTimeMillis" value="${mysql.minEvictableIdleTimeMillis}" />
+	    <property name="validationQuery" value="${mysql.validationQuery}" />
+	    <property name="testWhileIdle" value="${mysql.testWhileIdle}" />
+	    <property name="testOnBorrow" value="${mysql.testOnBorrow}" />
+	    <property name="testOnReturn" value="${mysql.testOnReturn}" />
+	    <property name="poolPreparedStatements" value="${mysql.poolPreparedStatements}" />
+	    <property name="maxPoolPreparedStatementPerConnectionSize" value="${mysql.maxPoolPreparedStatementPerConnectionSize}" />
+
+    </bean>
+  	 --> 
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx 
+    <bean id="transactionManagerMaster"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSourceMaster" />  
+    </bean>  
+  	-->  
+    <!-- 创建SqlSessionFactory，同时指定数据源 
+    <bean id="sqlSessionFactoryMaster" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSourceMaster" />  
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>  
+    -->    
+    <!-- 可通过注解控制事务  
+    <tx:annotation-driven />  
+  	--> 
+    <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper  
+    <bean id="mapperScannerConfigurerMaster" class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.navigate.treat.mapper" />  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMaster"/>
+    </bean>  
+    --> 
+    
+    <!-- 从数据库配置 -->
+    
+    <!--创建jdbc数据源   
+    <bean id="dataSourceSlave"	class="com.alibaba.druid.pool.DruidDataSource"	destroy-method="close">
+        <property name="driverClassName"  value="${mysql.driverClassNameSlave}"></property>
+        <property name="url" value="${mysql.urlSlave}"></property>
+        <property name="username" value="${mysql.usernameSlave}"></property>
+        <property name="password" value="${mysql.passwordSlave}"></property>
+        <property name="filters" value="${mysql.filters}" />
+	    <property name="maxActive" value="${mysql.maxActive}" />
+	    <property name="initialSize" value="${mysql.initialSize}" />
+	    <property name="maxWait" value="${mysql.maxWait}" />
+	    <property name="minIdle" value="${mysql.minIdle}" />
+	    <property name="timeBetweenEvictionRunsMillis" value="${mysql.timeBetweenEvictionRunsMillis}" />
+	    <property name="minEvictableIdleTimeMillis" value="${mysql.minEvictableIdleTimeMillis}" />
+	    <property name="validationQuery" value="${mysql.validationQuery}" />
+	    <property name="testWhileIdle" value="${mysql.testWhileIdle}" />
+	    <property name="testOnBorrow" value="${mysql.testOnBorrow}" />
+	    <property name="testOnReturn" value="${mysql.testOnReturn}" />
+	    <property name="poolPreparedStatements" value="${mysql.poolPreparedStatements}" />
+	    <property name="maxPoolPreparedStatementPerConnectionSize" value="${mysql.maxPoolPreparedStatementPerConnectionSize}" />
+
+    </bean>
+	-->
+  
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx  
+    <bean id="transactionManagerSlave"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSourceSlave" />  
+    </bean>  
+    --> 
+  
+    <!-- 创建SqlSessionFactory，同时指定数据源   
+    <bean id="sqlSessionFactorySlave" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSourceSlave" />  
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>  
+   --> 
+      
+      
+    <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper  
+    <bean id="mapperScannerConfigurerSlave" class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.zh.mapperslave" />  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactorySlave"/>
+    </bean>   
+    <bean id="userService" class="com.zh.service.UserService" />
+    --> 
+    
+      <!-- 定时任务  -->
+    <task:scheduled-tasks>   
+    	<!-- 缓存管理 
+        <task:scheduled ref="flushRedis" method="send" cron="0 0/30 0-23 * * ?"/>  
+    	-->
+        <!-- 后台发送 
+        <task:scheduled ref="backgroundTaskToRun" method="sendToAppServer" cron="0 0/15 0-23 * * ?"/> 
+        -->
+        <!-- 回复活动 
+        <task:scheduled ref="userCommentaryTask" method="doTask" cron="0 0/15 0-23 * * ?"/> 
+        -->
+        <!-- 发送话题
+        <task:scheduled ref="kefuSubjectTask" method="doTask" cron="0 0/30 0-23 * * ?"/>
+         -->
+        <!-- 回复用户聊天 
+        <task:scheduled ref="replyTask" method="kefuReply4Days" cron="0 0/15 0-23 * * ?"/>
+        -->
+        <!-- 问候新用户 
+        <task:scheduled ref="backgroundGreetingTaskTuRun" method="kefuGreeting4New" cron="0 0/15 0-23 * * ?"/>
+        -->
+        <!-- 一次性问候 
+        <task:scheduled ref="backgroundGreetingTaskTuRun" method="kefuGreeting4Once" cron="0 0/15 0-23 * * ?"/>
+        -->
+        <!-- 多天一次问候 
+        <task:scheduled ref="backgroundGreetingTaskTuRun" method="kefuGreeting4Days" cron="0 0/6 0-23 * * ?"/>
+        -->
+        <!-- 一天多次问候 
+        <task:scheduled ref="backgroundGreetingTaskTuRun" method="kefuGreeting4Times" cron="0 0/15 0-23 * * ?"/>
+        -->
+        <!-- 客服登录 -->
+        <task:scheduled ref="sensitivewordFilterTask" method="sensitivewordFilterTask" cron="0 0/15 0-23 * * ?"/>
+        <task:scheduled ref="showPraiseTask" method="countShowPraise4yesterday" cron="0 1 0 * * ?"/>
+	</task:scheduled-tasks>  
+	<!-- 
+	 -->
+	<context:component-scan base-package="com.navigate.treat.timedtask" />  
+</beans>

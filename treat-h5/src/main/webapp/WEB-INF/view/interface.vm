@@ -1,0 +1,16 @@
+ 
+    <hr/>
+                <div title="Home">
+					<h2>h5</h2>
+				<div class="cs-home-remark">
+								 
+				 <hr/>
+				<h5>静态页面</h5>
+	 		     <a href="$request.contextPath/static/about"＞</a>关于我请客</br>
+				  <a href="$request.contextPath/static/activityRule"＞</a>关于活动规则</br>
+				  <a href="$request.contextPath/static/prot"＞</a>用户注册协议</br>
+				  <a href="$request.contextPath/static/explain"＞</a>活动XX说明(担保金和赴约补贴说明)</br>
+
+
+				</div>
+				</div>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.basic.AdsMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.basic.Ads" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="positon" property="positon" jdbcType="INTEGER" />
+        <result column="imgUrl" property="imgUrl" jdbcType="VARCHAR" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, url, positon, imgUrl, ctime, title
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.basic.AdsQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from ads
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from ads
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.basic.Ads" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into ads (url, positon, imgUrl, 
+            ctime, title)
+        values (#{url,jdbcType=VARCHAR}, #{positon,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, 
+            #{ctime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.navigate.treat.beans.basic.Ads" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into ads
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="positon != null" >
+                positon,
+            </if>
+            <if test="imgUrl != null" >
+                imgUrl,
+            </if>
+            <if test="ctime != null" >
+                ctime,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="url != null" >
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="positon != null" >
+                #{positon,jdbcType=INTEGER},
+            </if>
+            <if test="imgUrl != null" >
+                #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="ctime != null" >
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null" >
+                #{title,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.basic.AdsQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from ads
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update ads
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.url != null" >
+                url = #{record.url,jdbcType=VARCHAR},
+            </if>
+            <if test="record.positon != null" >
+                positon = #{record.positon,jdbcType=INTEGER},
+            </if>
+            <if test="record.imgUrl != null" >
+                imgUrl = #{record.imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.title != null" >
+                title = #{record.title,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update ads
+        set id = #{record.id,jdbcType=BIGINT},
+            url = #{record.url,jdbcType=VARCHAR},
+            positon = #{record.positon,jdbcType=INTEGER},
+            imgUrl = #{record.imgUrl,jdbcType=VARCHAR},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            title = #{record.title,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.basic.Ads" >
+        update ads
+        <set >
+            <if test="url != null" >
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="positon != null" >
+                positon = #{positon,jdbcType=INTEGER},
+            </if>
+            <if test="imgUrl != null" >
+                imgUrl = #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null" >
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from ads
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.basic.AdsQueryHelper" >
+        delete from ads
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

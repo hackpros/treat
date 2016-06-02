@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.basic.ShowsPraiseMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.basic.ShowsPraise" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="showId" property="showId" jdbcType="BIGINT" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="showUserId" property="showUserId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, userId, showId, ctime, showUserId
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.basic.ShowsPraiseQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from shows_praise
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from shows_praise
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.basic.ShowsPraise" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into shows_praise (userId, showId, ctime, 
+            showUserId)
+        values (#{userId,jdbcType=BIGINT}, #{showId,jdbcType=BIGINT}, #{ctime,jdbcType=TIMESTAMP}, 
+            #{showUserId,jdbcType=BIGINT})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.navigate.treat.beans.basic.ShowsPraise" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into shows_praise
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="showId != null" >
+                showId,
+            </if>
+            <if test="ctime != null" >
+                ctime,
+            </if>
+            <if test="showUserId != null" >
+                showUserId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="showId != null" >
+                #{showId,jdbcType=BIGINT},
+            </if>
+            <if test="ctime != null" >
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="showUserId != null" >
+                #{showUserId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.basic.ShowsPraiseQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from shows_praise
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update shows_praise
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userId != null" >
+                userId = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.showId != null" >
+                showId = #{record.showId,jdbcType=BIGINT},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.showUserId != null" >
+                showUserId = #{record.showUserId,jdbcType=BIGINT},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update shows_praise
+        set id = #{record.id,jdbcType=BIGINT},
+            userId = #{record.userId,jdbcType=BIGINT},
+            showId = #{record.showId,jdbcType=BIGINT},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            showUserId = #{record.showUserId,jdbcType=BIGINT}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.basic.ShowsPraise" >
+        update shows_praise
+        <set >
+            <if test="userId != null" >
+                userId = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="showId != null" >
+                showId = #{showId,jdbcType=BIGINT},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="showUserId != null" >
+                showUserId = #{showUserId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from shows_praise
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.basic.ShowsPraiseQueryHelper" >
+        delete from shows_praise
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

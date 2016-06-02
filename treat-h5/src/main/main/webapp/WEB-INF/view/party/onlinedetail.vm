@@ -1,0 +1,104 @@
+#parse( 'global/header.vm' )
+ <head>
+  <meta charset="utf-8" />
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title></title>
+ 	<link href="$static_resource/css/onDetail.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body >
+<div id="baseInfoVue">
+        <div class="head-section">
+            <div class="head-title-warp">
+                <img class="title-icon" src="$static_resource/image/title-icon.png">
+                <div class="title-text">
+                    	$!{treatDetail.userActivities.theme}
+                </div>
+            </div>
+            <div class="head-info-warp">
+                <div class="info-left">
+                    <div class="info-left-name">
+						#if ($treatDetail.userActivities.users.crown>0)
+							<img class="info-left-name-icon" src="$static_resource/image/info-left-name-icon.png"/>
+						#else
+							<img class="info-left-name-icon" src="$static_resource/image/info-left-name-icon.png"/>${treatDetail.userActivities.users.pigeon}
+						#end
+                        <div>${treatDetail.userActivities.users.nickName}</div>
+                    </div>
+                    <div class="info-left-age">
+                        <div class="info-left-age-icon"></div>
+                        <div><span class="fm">
+								#if ($treatDetail.userActivities.users.sex==1)
+							    ♂
+								#else
+								♀
+								#end
+						</span>${self.getAge(${treatDetail.userActivities.users.birthday})} 岁   ${self.getConstellation(${treatDetail.userActivities.users.birthday})}</div>
+                    </div>
+                    <div class="info-left-intr">
+                        <img class="info-left-intr-icon" src="$static_resource/image/info-left-intr-icon.png"/>
+                        <div>运动/美食/旅行</div>
+                    </div>
+                </div>
+                <div class="info-right">
+                    <img class="right-img" src="${treatDetail.userActivities.users.headIcon}"/>
+                    <img class="right-icon" src="$static_resource/image/right-icon.png"/>
+                </div>
+            </div>
+            <div class="head-line-warp">
+                <div class="line">
+                </div>
+                <div class="line-text">
+						请客留言
+                </div>
+            </div>
+
+            <div class="mes-des">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$!	{treatDetail.userActivities.description}
+            </div>
+        </div>
+		<div class="info-warp">
+			
+		#foreach($item in $treatDetail.giftList)
+            <div class="info-li">
+            <img class="info-li-img" src="${item.image}"/>
+            <div class="info-li-right">
+                <div class="right-text-warp">
+                    <div class="right-name">
+						${item.giftName}
+                    </div>
+                    <div class="right-num">
+						数量:${item.count}
+                    </div>
+                    <div class="right-price">
+						单价:${item.price}元
+                    </div>
+                </div>
+				#if ($item.headIcon)
+					<img src="${item.headIcon}" class="right-icon"/>
+				#end
+                
+            </div>
+        </div>
+		#end
+    </div>
+
+     
+	<div class="fix-foot">
+		<div class="foot-time">
+			$!date.format('yyyy-MM-dd HH:mm:ss ',$!treatDetail.userActivities.activityTime)
+        </div>
+        <div class="foot-money hide">
+			赴约补贴${treatDetail.userActivities.subsidy}元
+        </div>
+        <div class="foot-jion">
+			<a href="${h5_download}">下载</>
+        </div>
+　　　</div>
+	
+  </div>
+</body>
+</html>

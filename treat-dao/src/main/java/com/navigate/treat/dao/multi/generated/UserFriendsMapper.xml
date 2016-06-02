@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.multi.UserFriendsMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.multi.UserFriends" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="fuserId" property="fuserId" jdbcType="BIGINT" />
+        <result column="remarkName" property="remarkName" jdbcType="VARCHAR" />
+        <result column="groupId" property="groupId" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, userId, fuserId, remarkName, groupId, status, ctime, mtime, remark
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.multi.UserFriendsQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from userFriends
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from userFriends
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.multi.UserFriends" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into userFriends (id, userId, fuserId, 
+            remarkName, groupId, status, 
+            ctime, mtime, remark
+            )
+        values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{fuserId,jdbcType=BIGINT}, 
+            #{remarkName,jdbcType=VARCHAR}, #{groupId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+            #{ctime,jdbcType=TIMESTAMP}, #{mtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.multi.UserFriendsQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from userFriends
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update userFriends
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userId != null" >
+                userId = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.fuserId != null" >
+                fuserId = #{record.fuserId,jdbcType=BIGINT},
+            </if>
+            <if test="record.remarkName != null" >
+                remarkName = #{record.remarkName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.groupId != null" >
+                groupId = #{record.groupId,jdbcType=BIGINT},
+            </if>
+            <if test="record.status != null" >
+                status = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.mtime != null" >
+                mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.remark != null" >
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update userFriends
+        set id = #{record.id,jdbcType=BIGINT},
+            userId = #{record.userId,jdbcType=BIGINT},
+            fuserId = #{record.fuserId,jdbcType=BIGINT},
+            remarkName = #{record.remarkName,jdbcType=VARCHAR},
+            groupId = #{record.groupId,jdbcType=BIGINT},
+            status = #{record.status,jdbcType=INTEGER},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            remark = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.multi.UserFriends" >
+        update userFriends
+        <set >
+            <if test="userId != null" >
+                userId = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="fuserId != null" >
+                fuserId = #{fuserId,jdbcType=BIGINT},
+            </if>
+            <if test="remarkName != null" >
+                remarkName = #{remarkName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null" >
+                groupId = #{groupId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mtime != null" >
+                mtime = #{mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from userFriends
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.multi.UserFriendsQueryHelper" >
+        delete from userFriends
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

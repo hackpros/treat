@@ -1,0 +1,55 @@
+#import <Foundation/Foundation.h>
+#import "DeviceInfoRes.h";
+{
+	NSNumber* userId;
+	NSString* mobile;
+	NSString* nickName;
+	NSNumber* sex;
+	NSString* treamNum;
+	NSDate* birthday;
+	NSNumber* crown;
+	NSNumber* pigeon;
+	NSNumber* height;
+	NSString* headIcon;
+	NSNumber* vocation;
+	NSString* corpName;
+	NSString* school;
+	NSString* signature;
+	NSNumber* interest;
+	NSNumber* cityCode;
+	NSNumber* provinceCode;
+	NSNumber* allureValue;
+	NSNumber* techniqueValue;
+	NSNumber* balance;
+	NSNumber* technique;
+	Boolean firstLogin;
+	DeviceInfoRes* deviceInfo;
+	NSString* rongYunToken;
+	NSDate* lastLoginTime;
+}
+@property (nonatomic)NSNumber* userId;
+@property (nonatomic)NSString* mobile;
+@property (nonatomic)NSString* nickName;
+@property (nonatomic)NSNumber* sex;
+@property (nonatomic)NSString* treamNum;
+@property (nonatomic)NSDate* birthday;
+@property (nonatomic)NSNumber* crown;
+@property (nonatomic)NSNumber* pigeon;
+@property (nonatomic)NSNumber* height;
+@property (nonatomic)NSString* headIcon;
+@property (nonatomic)NSNumber* vocation;
+@property (nonatomic)NSString* corpName;
+@property (nonatomic)NSString* school;
+@property (nonatomic)NSString* signature;
+@property (nonatomic)NSNumber* interest;
+@property (nonatomic)NSNumber* cityCode;
+@property (nonatomic)NSNumber* provinceCode;
+@property (nonatomic)NSNumber* allureValue;
+@property (nonatomic)NSNumber* techniqueValue;
+@property (nonatomic)NSNumber* balance;
+@property (nonatomic)NSNumber* technique;
+@property (nonatomic)Boolean firstLogin;
+@property (nonatomic)DeviceInfoRes* deviceInfo;
+@property (nonatomic)NSString* rongYunToken;
+@property (nonatomic)NSDate* lastLoginTime;
+@end

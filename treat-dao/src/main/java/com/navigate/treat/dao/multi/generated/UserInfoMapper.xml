@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.multi.UserInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.multi.UserInfo" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="vocation" property="vocation" jdbcType="INTEGER" />
+        <result column="corpName" property="corpName" jdbcType="VARCHAR" />
+        <result column="school" property="school" jdbcType="VARCHAR" />
+        <result column="signature" property="signature" jdbcType="VARCHAR" />
+        <result column="interest" property="interest" jdbcType="INTEGER" />
+        <result column="cityCode" property="cityCode" jdbcType="VARCHAR" />
+        <result column="provinceCode" property="provinceCode" jdbcType="VARCHAR" />
+        <result column="allureValue" property="allureValue" jdbcType="INTEGER" />
+        <result column="techniqueValue" property="techniqueValue" jdbcType="INTEGER" />
+        <result column="balance" property="balance" jdbcType="DECIMAL" />
+        <result column="technique" property="technique" jdbcType="INTEGER" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, userId, vocation, corpName, school, signature, interest, cityCode, provinceCode, 
+        allureValue, techniqueValue, balance, technique, ctime, mtime
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.multi.UserInfoQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from userInfo
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from userInfo
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.multi.UserInfo" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into userInfo (userId, vocation, corpName, 
+            school, signature, interest, 
+            cityCode, provinceCode, allureValue, 
+            techniqueValue, balance, technique, 
+            ctime, mtime)
+        values (#{userId,jdbcType=BIGINT}, #{vocation,jdbcType=INTEGER}, #{corpName,jdbcType=VARCHAR}, 
+            #{school,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{interest,jdbcType=INTEGER}, 
+            #{cityCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{allureValue,jdbcType=INTEGER}, 
+            #{techniqueValue,jdbcType=INTEGER}, #{balance,jdbcType=DECIMAL}, #{technique,jdbcType=INTEGER}, 
+            #{ctime,jdbcType=TIMESTAMP}, #{mtime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.navigate.treat.beans.multi.UserInfo" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into userInfo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="vocation != null" >
+                vocation,
+            </if>
+            <if test="corpName != null" >
+                corpName,
+            </if>
+            <if test="school != null" >
+                school,
+            </if>
+            <if test="signature != null" >
+                signature,
+            </if>
+            <if test="interest != null" >
+                interest,
+            </if>
+            <if test="cityCode != null" >
+                cityCode,
+            </if>
+            <if test="provinceCode != null" >
+                provinceCode,
+            </if>
+            <if test="allureValue != null" >
+                allureValue,
+            </if>
+            <if test="techniqueValue != null" >
+                techniqueValue,
+            </if>
+            <if test="balance != null" >
+                balance,
+            </if>
+            <if test="technique != null" >
+                technique,
+            </if>
+            <if test="ctime != null" >
+                ctime,
+            </if>
+            <if test="mtime != null" >
+                mtime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="vocation != null" >
+                #{vocation,jdbcType=INTEGER},
+            </if>
+            <if test="corpName != null" >
+                #{corpName,jdbcType=VARCHAR},
+            </if>
+            <if test="school != null" >
+                #{school,jdbcType=VARCHAR},
+            </if>
+            <if test="signature != null" >
+                #{signature,jdbcType=VARCHAR},
+            </if>
+            <if test="interest != null" >
+                #{interest,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null" >
+                #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null" >
+                #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="allureValue != null" >
+                #{allureValue,jdbcType=INTEGER},
+            </if>
+            <if test="techniqueValue != null" >
+                #{techniqueValue,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null" >
+                #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="technique != null" >
+                #{technique,jdbcType=INTEGER},
+            </if>
+            <if test="ctime != null" >
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mtime != null" >
+                #{mtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.multi.UserInfoQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from userInfo
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update userInfo
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userId != null" >
+                userId = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.vocation != null" >
+                vocation = #{record.vocation,jdbcType=INTEGER},
+            </if>
+            <if test="record.corpName != null" >
+                corpName = #{record.corpName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.school != null" >
+                school = #{record.school,jdbcType=VARCHAR},
+            </if>
+            <if test="record.signature != null" >
+                signature = #{record.signature,jdbcType=VARCHAR},
+            </if>
+            <if test="record.interest != null" >
+                interest = #{record.interest,jdbcType=INTEGER},
+            </if>
+            <if test="record.cityCode != null" >
+                cityCode = #{record.cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.provinceCode != null" >
+                provinceCode = #{record.provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.allureValue != null" >
+                allureValue = #{record.allureValue,jdbcType=INTEGER},
+            </if>
+            <if test="record.techniqueValue != null" >
+                techniqueValue = #{record.techniqueValue,jdbcType=INTEGER},
+            </if>
+            <if test="record.balance != null" >
+                balance = #{record.balance,jdbcType=DECIMAL},
+            </if>
+            <if test="record.technique != null" >
+                technique = #{record.technique,jdbcType=INTEGER},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.mtime != null" >
+                mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update userInfo
+        set id = #{record.id,jdbcType=BIGINT},
+            userId = #{record.userId,jdbcType=BIGINT},
+            vocation = #{record.vocation,jdbcType=INTEGER},
+            corpName = #{record.corpName,jdbcType=VARCHAR},
+            school = #{record.school,jdbcType=VARCHAR},
+            signature = #{record.signature,jdbcType=VARCHAR},
+            interest = #{record.interest,jdbcType=INTEGER},
+            cityCode = #{record.cityCode,jdbcType=VARCHAR},
+            provinceCode = #{record.provinceCode,jdbcType=VARCHAR},
+            allureValue = #{record.allureValue,jdbcType=INTEGER},
+            techniqueValue = #{record.techniqueValue,jdbcType=INTEGER},
+            balance = #{record.balance,jdbcType=DECIMAL},
+            technique = #{record.technique,jdbcType=INTEGER},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            mtime = #{record.mtime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.multi.UserInfo" >
+        update userInfo
+        <set >
+            <if test="userId != null" >
+                userId = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="vocation != null" >
+                vocation = #{vocation,jdbcType=INTEGER},
+            </if>
+            <if test="corpName != null" >
+                corpName = #{corpName,jdbcType=VARCHAR},
+            </if>
+            <if test="school != null" >
+                school = #{school,jdbcType=VARCHAR},
+            </if>
+            <if test="signature != null" >
+                signature = #{signature,jdbcType=VARCHAR},
+            </if>
+            <if test="interest != null" >
+                interest = #{interest,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null" >
+                cityCode = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null" >
+                provinceCode = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="allureValue != null" >
+                allureValue = #{allureValue,jdbcType=INTEGER},
+            </if>
+            <if test="techniqueValue != null" >
+                techniqueValue = #{techniqueValue,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null" >
+                balance = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="technique != null" >
+                technique = #{technique,jdbcType=INTEGER},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mtime != null" >
+                mtime = #{mtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from userInfo
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.multi.UserInfoQueryHelper" >
+        delete from userInfo
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.basic.MessageMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.basic.Message" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="fuid" property="fuid" jdbcType="BIGINT" />
+        <result column="tuid" property="tuid" jdbcType="BIGINT" />
+        <result column="mtype" property="mtype" jdbcType="INTEGER" />
+        <result column="bizCode" property="bizCode" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="operation" property="operation" jdbcType="INTEGER" />
+        <result column="targetType" property="targetType" jdbcType="INTEGER" />
+        <result column="targetUrl" property="targetUrl" jdbcType="VARCHAR" />
+        <result column="args" property="args" jdbcType="VARCHAR" />
+        <result column="run" property="run" jdbcType="BIT" />
+        <result column="iread" property="iread" jdbcType="BIT" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="overdueTime" property="overdueTime" jdbcType="TIMESTAMP" />
+        <result column="javaBean" property="javaBean" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, fuid, tuid, mtype, bizCode, title, content, operation, targetType, targetUrl, 
+        args, run, iread, status, ctime, overdueTime, javaBean
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.basic.MessageQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from message
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from message
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.basic.Message" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into message (fuid, tuid, mtype, 
+            bizCode, title, content, 
+            operation, targetType, targetUrl, 
+            args, run, iread, status, 
+            ctime, overdueTime, javaBean
+            )
+        values (#{fuid,jdbcType=BIGINT}, #{tuid,jdbcType=BIGINT}, #{mtype,jdbcType=INTEGER}, 
+            #{bizCode,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+            #{operation,jdbcType=INTEGER}, #{targetType,jdbcType=INTEGER}, #{targetUrl,jdbcType=VARCHAR}, 
+            #{args,jdbcType=VARCHAR}, #{run,jdbcType=BIT}, #{iread,jdbcType=BIT}, #{status,jdbcType=INTEGER}, 
+            #{ctime,jdbcType=TIMESTAMP}, #{overdueTime,jdbcType=TIMESTAMP}, #{javaBean,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.navigate.treat.beans.basic.Message" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into message
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="fuid != null" >
+                fuid,
+            </if>
+            <if test="tuid != null" >
+                tuid,
+            </if>
+            <if test="mtype != null" >
+                mtype,
+            </if>
+            <if test="bizCode != null" >
+                bizCode,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="operation != null" >
+                operation,
+            </if>
+            <if test="targetType != null" >
+                targetType,
+            </if>
+            <if test="targetUrl != null" >
+                targetUrl,
+            </if>
+            <if test="args != null" >
+                args,
+            </if>
+            <if test="run != null" >
+                run,
+            </if>
+            <if test="iread != null" >
+                iread,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="ctime != null" >
+                ctime,
+            </if>
+            <if test="overdueTime != null" >
+                overdueTime,
+            </if>
+            <if test="javaBean != null" >
+                javaBean,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="fuid != null" >
+                #{fuid,jdbcType=BIGINT},
+            </if>
+            <if test="tuid != null" >
+                #{tuid,jdbcType=BIGINT},
+            </if>
+            <if test="mtype != null" >
+                #{mtype,jdbcType=INTEGER},
+            </if>
+            <if test="bizCode != null" >
+                #{bizCode,jdbcType=INTEGER},
+            </if>
+            <if test="title != null" >
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null" >
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="operation != null" >
+                #{operation,jdbcType=INTEGER},
+            </if>
+            <if test="targetType != null" >
+                #{targetType,jdbcType=INTEGER},
+            </if>
+            <if test="targetUrl != null" >
+                #{targetUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="args != null" >
+                #{args,jdbcType=VARCHAR},
+            </if>
+            <if test="run != null" >
+                #{run,jdbcType=BIT},
+            </if>
+            <if test="iread != null" >
+                #{iread,jdbcType=BIT},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="ctime != null" >
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="overdueTime != null" >
+                #{overdueTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="javaBean != null" >
+                #{javaBean,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.basic.MessageQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from message
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update message
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.fuid != null" >
+                fuid = #{record.fuid,jdbcType=BIGINT},
+            </if>
+            <if test="record.tuid != null" >
+                tuid = #{record.tuid,jdbcType=BIGINT},
+            </if>
+            <if test="record.mtype != null" >
+                mtype = #{record.mtype,jdbcType=INTEGER},
+            </if>
+            <if test="record.bizCode != null" >
+                bizCode = #{record.bizCode,jdbcType=INTEGER},
+            </if>
+            <if test="record.title != null" >
+                title = #{record.title,jdbcType=VARCHAR},
+            </if>
+            <if test="record.content != null" >
+                content = #{record.content,jdbcType=VARCHAR},
+            </if>
+            <if test="record.operation != null" >
+                operation = #{record.operation,jdbcType=INTEGER},
+            </if>
+            <if test="record.targetType != null" >
+                targetType = #{record.targetType,jdbcType=INTEGER},
+            </if>
+            <if test="record.targetUrl != null" >
+                targetUrl = #{record.targetUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.args != null" >
+                args = #{record.args,jdbcType=VARCHAR},
+            </if>
+            <if test="record.run != null" >
+                run = #{record.run,jdbcType=BIT},
+            </if>
+            <if test="record.iread != null" >
+                iread = #{record.iread,jdbcType=BIT},
+            </if>
+            <if test="record.status != null" >
+                status = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.overdueTime != null" >
+                overdueTime = #{record.overdueTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.javaBean != null" >
+                javaBean = #{record.javaBean,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update message
+        set id = #{record.id,jdbcType=BIGINT},
+            fuid = #{record.fuid,jdbcType=BIGINT},
+            tuid = #{record.tuid,jdbcType=BIGINT},
+            mtype = #{record.mtype,jdbcType=INTEGER},
+            bizCode = #{record.bizCode,jdbcType=INTEGER},
+            title = #{record.title,jdbcType=VARCHAR},
+            content = #{record.content,jdbcType=VARCHAR},
+            operation = #{record.operation,jdbcType=INTEGER},
+            targetType = #{record.targetType,jdbcType=INTEGER},
+            targetUrl = #{record.targetUrl,jdbcType=VARCHAR},
+            args = #{record.args,jdbcType=VARCHAR},
+            run = #{record.run,jdbcType=BIT},
+            iread = #{record.iread,jdbcType=BIT},
+            status = #{record.status,jdbcType=INTEGER},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            overdueTime = #{record.overdueTime,jdbcType=TIMESTAMP},
+            javaBean = #{record.javaBean,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.basic.Message" >
+        update message
+        <set >
+            <if test="fuid != null" >
+                fuid = #{fuid,jdbcType=BIGINT},
+            </if>
+            <if test="tuid != null" >
+                tuid = #{tuid,jdbcType=BIGINT},
+            </if>
+            <if test="mtype != null" >
+                mtype = #{mtype,jdbcType=INTEGER},
+            </if>
+            <if test="bizCode != null" >
+                bizCode = #{bizCode,jdbcType=INTEGER},
+            </if>
+            <if test="title != null" >
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null" >
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="operation != null" >
+                operation = #{operation,jdbcType=INTEGER},
+            </if>
+            <if test="targetType != null" >
+                targetType = #{targetType,jdbcType=INTEGER},
+            </if>
+            <if test="targetUrl != null" >
+                targetUrl = #{targetUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="args != null" >
+                args = #{args,jdbcType=VARCHAR},
+            </if>
+            <if test="run != null" >
+                run = #{run,jdbcType=BIT},
+            </if>
+            <if test="iread != null" >
+                iread = #{iread,jdbcType=BIT},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="overdueTime != null" >
+                overdueTime = #{overdueTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="javaBean != null" >
+                javaBean = #{javaBean,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from message
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.basic.MessageQueryHelper" >
+        delete from message
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

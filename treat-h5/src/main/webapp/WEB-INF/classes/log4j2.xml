@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<properties>
+		<property name="logpath">${sys:user.home}/logs</property>
+	</properties>
+
+	<Appenders>
+		<Console name="A1" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
+		</Console>
+
+
+		<RollingFile name="A2" fileName="${logpath}/treat-h5.log"
+			filePattern="${logpath}/$${date:yyyy-MM}/treat-h5_%d{yyyy-MM-dd}_%i.log">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true"
+					interval="1" />
+				<SizeBasedTriggeringPolicy size="100MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="A1" />
+			<AppenderRef ref="A2" />
+		</Root>
+	</Loggers>
+
+</Configuration>

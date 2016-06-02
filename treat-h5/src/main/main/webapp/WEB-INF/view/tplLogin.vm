@@ -1,0 +1,36 @@
+
+<hr/>
+	<div title="Home" style="border:1px solid red">
+		<div class="cs-home-remark">
+			<h1>我请客-微信登录测试</h1> <br>
+				<ul id="tt2">1 ${session.getAttribute("tpl")}</ul>
+				<ul id="tt2">2 ${session.getAttribute("tplOpen")}</ul>
+				<br>
+					<a href="https://open.weixin.qq.com/connect/qrconnect?appid=wxbdc5610cc59c1631&redirect_uri=https%3A%2F%2Fpassport.yhd.com%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect">一号店</a>
+				</br>
+				https://open.weixin.qq.com/connect/qrconnect?appid=wxbdc5610cc59c1631&redirect_uri=https%3A%2F%2Fpassport.yhd.com%2Fwechat%2Fcallback.do&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect	
+			   
+				</hr>
+				</br>
+				${redirect_uri}
+				</br>
+				</br>
+				https://open.weixin.qq.com/connect/oauth2/authorize?appid=${APPID_WECHAT}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect
+				</br>
+				
+				
+                ##snsapi_base的时候没有影响。但是scope为snsapi_userinfo
+		
+				#if (!$session.getAttribute("tpl"))
+					<a target="_blank" href="
+						https://open.weixin.qq.com/connect/oauth2/authorize?appid=${APPID_WECHAT}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect
+						">微信登录<a/>
+				#else
+					<a href="#">已经登录了，可以点先赞了<a/>
+				#end	
+			</br>
+				<a target="_blank" href="
+				http://www.wqk520.com/treat-h5/wechat/callback.html?code=0316169e11b16cd7989dabd25c40924x&state=state">登录回调<a/>
+				
+    	</div>
+	</div>

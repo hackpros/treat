@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.multi.UsersMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.multi.Users" >
+        <id column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="nickName" property="nickName" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="INTEGER" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="backgroundImage" property="backgroundImage" jdbcType="VARCHAR" />
+        <result column="treamNum" property="treamNum" jdbcType="VARCHAR" />
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+        <result column="userSource" property="userSource" jdbcType="VARCHAR" />
+        <result column="height" property="height" jdbcType="INTEGER" />
+        <result column="headIcon" property="headIcon" jdbcType="VARCHAR" />
+        <result column="lastLoginTime" property="lastLoginTime" jdbcType="TIMESTAMP" />
+        <result column="photo" property="photo" jdbcType="VARCHAR" />
+        <result column="signature" property="signature" jdbcType="VARCHAR" />
+        <result column="balance" property="balance" jdbcType="DECIMAL" />
+        <result column="deviceId" property="deviceId" jdbcType="VARCHAR" />
+        <result column="lng" property="lng" jdbcType="VARCHAR" />
+        <result column="lat" property="lat" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        userId, mobile, nickName, sex, ctime, mtime, status, backgroundImage, treamNum, birthday, 
+        userSource, height, headIcon, lastLoginTime, photo, signature, balance, deviceId, 
+        lng, lat
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.multi.UsersQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from users
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from users
+        where userId = #{userId,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.multi.Users" >
+        insert into users (userId, mobile, nickName, 
+            sex, ctime, mtime, 
+            status, backgroundImage, treamNum, 
+            birthday, userSource, height, 
+            headIcon, lastLoginTime, photo, 
+            signature, balance, deviceId, 
+            lng, lat)
+        values (#{userId,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+            #{sex,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, #{mtime,jdbcType=TIMESTAMP}, 
+            #{status,jdbcType=INTEGER}, #{backgroundImage,jdbcType=VARCHAR}, #{treamNum,jdbcType=VARCHAR}, 
+            #{birthday,jdbcType=TIMESTAMP}, #{userSource,jdbcType=VARCHAR}, #{height,jdbcType=INTEGER}, 
+            #{headIcon,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+            #{signature,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{deviceId,jdbcType=VARCHAR}, 
+            #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.navigate.treat.beans.multi.Users" >
+        insert into users
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="mobile != null" >
+                mobile,
+            </if>
+            <if test="nickName != null" >
+                nickName,
+            </if>
+            <if test="sex != null" >
+                sex,
+            </if>
+            <if test="ctime != null" >
+                ctime,
+            </if>
+            <if test="mtime != null" >
+                mtime,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="backgroundImage != null" >
+                backgroundImage,
+            </if>
+            <if test="treamNum != null" >
+                treamNum,
+            </if>
+            <if test="birthday != null" >
+                birthday,
+            </if>
+            <if test="userSource != null" >
+                userSource,
+            </if>
+            <if test="height != null" >
+                height,
+            </if>
+            <if test="headIcon != null" >
+                headIcon,
+            </if>
+            <if test="lastLoginTime != null" >
+                lastLoginTime,
+            </if>
+            <if test="photo != null" >
+                photo,
+            </if>
+            <if test="signature != null" >
+                signature,
+            </if>
+            <if test="balance != null" >
+                balance,
+            </if>
+            <if test="deviceId != null" >
+                deviceId,
+            </if>
+            <if test="lng != null" >
+                lng,
+            </if>
+            <if test="lat != null" >
+                lat,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="mobile != null" >
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null" >
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="ctime != null" >
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mtime != null" >
+                #{mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="backgroundImage != null" >
+                #{backgroundImage,jdbcType=VARCHAR},
+            </if>
+            <if test="treamNum != null" >
+                #{treamNum,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null" >
+                #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userSource != null" >
+                #{userSource,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null" >
+                #{height,jdbcType=INTEGER},
+            </if>
+            <if test="headIcon != null" >
+                #{headIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginTime != null" >
+                #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="photo != null" >
+                #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="signature != null" >
+                #{signature,jdbcType=VARCHAR},
+            </if>
+            <if test="balance != null" >
+                #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="deviceId != null" >
+                #{deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="lng != null" >
+                #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null" >
+                #{lat,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.multi.UsersQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from users
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update users
+        <set >
+            <if test="record.userId != null" >
+                userId = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.mobile != null" >
+                mobile = #{record.mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.nickName != null" >
+                nickName = #{record.nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sex != null" >
+                sex = #{record.sex,jdbcType=INTEGER},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.mtime != null" >
+                mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.status != null" >
+                status = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.backgroundImage != null" >
+                backgroundImage = #{record.backgroundImage,jdbcType=VARCHAR},
+            </if>
+            <if test="record.treamNum != null" >
+                treamNum = #{record.treamNum,jdbcType=VARCHAR},
+            </if>
+            <if test="record.birthday != null" >
+                birthday = #{record.birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.userSource != null" >
+                userSource = #{record.userSource,jdbcType=VARCHAR},
+            </if>
+            <if test="record.height != null" >
+                height = #{record.height,jdbcType=INTEGER},
+            </if>
+            <if test="record.headIcon != null" >
+                headIcon = #{record.headIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lastLoginTime != null" >
+                lastLoginTime = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.photo != null" >
+                photo = #{record.photo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.signature != null" >
+                signature = #{record.signature,jdbcType=VARCHAR},
+            </if>
+            <if test="record.balance != null" >
+                balance = #{record.balance,jdbcType=DECIMAL},
+            </if>
+            <if test="record.deviceId != null" >
+                deviceId = #{record.deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lng != null" >
+                lng = #{record.lng,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lat != null" >
+                lat = #{record.lat,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update users
+        set userId = #{record.userId,jdbcType=BIGINT},
+            mobile = #{record.mobile,jdbcType=VARCHAR},
+            nickName = #{record.nickName,jdbcType=VARCHAR},
+            sex = #{record.sex,jdbcType=INTEGER},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            status = #{record.status,jdbcType=INTEGER},
+            backgroundImage = #{record.backgroundImage,jdbcType=VARCHAR},
+            treamNum = #{record.treamNum,jdbcType=VARCHAR},
+            birthday = #{record.birthday,jdbcType=TIMESTAMP},
+            userSource = #{record.userSource,jdbcType=VARCHAR},
+            height = #{record.height,jdbcType=INTEGER},
+            headIcon = #{record.headIcon,jdbcType=VARCHAR},
+            lastLoginTime = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+            photo = #{record.photo,jdbcType=VARCHAR},
+            signature = #{record.signature,jdbcType=VARCHAR},
+            balance = #{record.balance,jdbcType=DECIMAL},
+            deviceId = #{record.deviceId,jdbcType=VARCHAR},
+            lng = #{record.lng,jdbcType=VARCHAR},
+            lat = #{record.lat,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.multi.Users" >
+        update users
+        <set >
+            <if test="mobile != null" >
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null" >
+                nickName = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mtime != null" >
+                mtime = #{mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="backgroundImage != null" >
+                backgroundImage = #{backgroundImage,jdbcType=VARCHAR},
+            </if>
+            <if test="treamNum != null" >
+                treamNum = #{treamNum,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null" >
+                birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userSource != null" >
+                userSource = #{userSource,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null" >
+                height = #{height,jdbcType=INTEGER},
+            </if>
+            <if test="headIcon != null" >
+                headIcon = #{headIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginTime != null" >
+                lastLoginTime = #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="photo != null" >
+                photo = #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="signature != null" >
+                signature = #{signature,jdbcType=VARCHAR},
+            </if>
+            <if test="balance != null" >
+                balance = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="deviceId != null" >
+                deviceId = #{deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="lng != null" >
+                lng = #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null" >
+                lat = #{lat,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where userId = #{userId,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from users
+        where userId = #{userId,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.multi.UsersQueryHelper" >
+        delete from users
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+ <head>
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    ## 手机号,email无超链接
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title>用户协议</title>
+ 	##<link href="$static_resource/css/eidt.css" rel="stylesheet" type="text/css" />
+ 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	## 适合手机窗口大小
+	<meta name="viewport"	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	##控制图片样式,不可以去掉
+	<style type="text/css">
+	</style>
+</head>
+<body>
+<div  id="baseInfoVue">
+	用户协议
+</div>
+</body>
+</html>
+
+
+

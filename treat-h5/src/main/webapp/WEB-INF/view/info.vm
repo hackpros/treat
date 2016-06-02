@@ -1,0 +1,8 @@
+</html>
+#parse( 'global/header.vm' )
+<script type="text/javascript">
+</script>
+<body class="easyui-layout">
+	${mobile}
+</body>
+</html>

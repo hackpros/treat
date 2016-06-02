@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.navigate.treat.dao.basic.ActivitySignMapper" >
+    <resultMap id="BaseResultMap" type="com.navigate.treat.beans.basic.ActivitySign" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="activityId" property="activityId" jdbcType="BIGINT" />
+        <result column="activityTime" property="activityTime" jdbcType="TIMESTAMP" />
+        <result column="lng" property="lng" jdbcType="VARCHAR" />
+        <result column="lat" property="lat" jdbcType="VARCHAR" />
+        <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+        <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+        <result column="role" property="role" jdbcType="INTEGER" />
+        <result column="signin" property="signin" jdbcType="INTEGER" />
+        <result column="singTime" property="singTime" jdbcType="TIMESTAMP" />
+        <result column="supplyAmount" property="supplyAmount" jdbcType="DECIMAL" />
+        <result column="supply" property="supply" jdbcType="INTEGER" />
+        <result column="depositAmount" property="depositAmount" jdbcType="DECIMAL" />
+        <result column="deposit" property="deposit" jdbcType="INTEGER" />
+        <result column="bePunished" property="bePunished" jdbcType="INTEGER" />
+        <result column="punished" property="punished" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, userId, activityId, activityTime, lng, lat, ctime, mtime, role, signin, singTime, 
+        supplyAmount, supply, depositAmount, deposit, bePunished, punished
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.navigate.treat.beans.basic.ActivitySignQueryHelper" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from activity_sign
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from activity_sign
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.navigate.treat.beans.basic.ActivitySign" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into activity_sign (userId, activityId, activityTime, 
+            lng, lat, ctime, 
+            mtime, role, signin, 
+            singTime, supplyAmount, supply, 
+            depositAmount, deposit, bePunished, 
+            punished)
+        values (#{userId,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, #{activityTime,jdbcType=TIMESTAMP}, 
+            #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, 
+            #{mtime,jdbcType=TIMESTAMP}, #{role,jdbcType=INTEGER}, #{signin,jdbcType=INTEGER}, 
+            #{singTime,jdbcType=TIMESTAMP}, #{supplyAmount,jdbcType=DECIMAL}, #{supply,jdbcType=INTEGER}, 
+            #{depositAmount,jdbcType=DECIMAL}, #{deposit,jdbcType=INTEGER}, #{bePunished,jdbcType=INTEGER}, 
+            #{punished,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.navigate.treat.beans.basic.ActivitySign" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into activity_sign
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                userId,
+            </if>
+            <if test="activityId != null" >
+                activityId,
+            </if>
+            <if test="activityTime != null" >
+                activityTime,
+            </if>
+            <if test="lng != null" >
+                lng,
+            </if>
+            <if test="lat != null" >
+                lat,
+            </if>
+            <if test="ctime != null" >
+                ctime,
+            </if>
+            <if test="mtime != null" >
+                mtime,
+            </if>
+            <if test="role != null" >
+                role,
+            </if>
+            <if test="signin != null" >
+                signin,
+            </if>
+            <if test="singTime != null" >
+                singTime,
+            </if>
+            <if test="supplyAmount != null" >
+                supplyAmount,
+            </if>
+            <if test="supply != null" >
+                supply,
+            </if>
+            <if test="depositAmount != null" >
+                depositAmount,
+            </if>
+            <if test="deposit != null" >
+                deposit,
+            </if>
+            <if test="bePunished != null" >
+                bePunished,
+            </if>
+            <if test="punished != null" >
+                punished,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="activityId != null" >
+                #{activityId,jdbcType=BIGINT},
+            </if>
+            <if test="activityTime != null" >
+                #{activityTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lng != null" >
+                #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null" >
+                #{lat,jdbcType=VARCHAR},
+            </if>
+            <if test="ctime != null" >
+                #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mtime != null" >
+                #{mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="role != null" >
+                #{role,jdbcType=INTEGER},
+            </if>
+            <if test="signin != null" >
+                #{signin,jdbcType=INTEGER},
+            </if>
+            <if test="singTime != null" >
+                #{singTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="supplyAmount != null" >
+                #{supplyAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="supply != null" >
+                #{supply,jdbcType=INTEGER},
+            </if>
+            <if test="depositAmount != null" >
+                #{depositAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="deposit != null" >
+                #{deposit,jdbcType=INTEGER},
+            </if>
+            <if test="bePunished != null" >
+                #{bePunished,jdbcType=INTEGER},
+            </if>
+            <if test="punished != null" >
+                #{punished,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.navigate.treat.beans.basic.ActivitySignQueryHelper" resultType="java.lang.Integer" >
+        select count(*) from activity_sign
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update activity_sign
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userId != null" >
+                userId = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.activityId != null" >
+                activityId = #{record.activityId,jdbcType=BIGINT},
+            </if>
+            <if test="record.activityTime != null" >
+                activityTime = #{record.activityTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lng != null" >
+                lng = #{record.lng,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lat != null" >
+                lat = #{record.lat,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ctime != null" >
+                ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.mtime != null" >
+                mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.role != null" >
+                role = #{record.role,jdbcType=INTEGER},
+            </if>
+            <if test="record.signin != null" >
+                signin = #{record.signin,jdbcType=INTEGER},
+            </if>
+            <if test="record.singTime != null" >
+                singTime = #{record.singTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.supplyAmount != null" >
+                supplyAmount = #{record.supplyAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.supply != null" >
+                supply = #{record.supply,jdbcType=INTEGER},
+            </if>
+            <if test="record.depositAmount != null" >
+                depositAmount = #{record.depositAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.deposit != null" >
+                deposit = #{record.deposit,jdbcType=INTEGER},
+            </if>
+            <if test="record.bePunished != null" >
+                bePunished = #{record.bePunished,jdbcType=INTEGER},
+            </if>
+            <if test="record.punished != null" >
+                punished = #{record.punished,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update activity_sign
+        set id = #{record.id,jdbcType=BIGINT},
+            userId = #{record.userId,jdbcType=BIGINT},
+            activityId = #{record.activityId,jdbcType=BIGINT},
+            activityTime = #{record.activityTime,jdbcType=TIMESTAMP},
+            lng = #{record.lng,jdbcType=VARCHAR},
+            lat = #{record.lat,jdbcType=VARCHAR},
+            ctime = #{record.ctime,jdbcType=TIMESTAMP},
+            mtime = #{record.mtime,jdbcType=TIMESTAMP},
+            role = #{record.role,jdbcType=INTEGER},
+            signin = #{record.signin,jdbcType=INTEGER},
+            singTime = #{record.singTime,jdbcType=TIMESTAMP},
+            supplyAmount = #{record.supplyAmount,jdbcType=DECIMAL},
+            supply = #{record.supply,jdbcType=INTEGER},
+            depositAmount = #{record.depositAmount,jdbcType=DECIMAL},
+            deposit = #{record.deposit,jdbcType=INTEGER},
+            bePunished = #{record.bePunished,jdbcType=INTEGER},
+            punished = #{record.punished,jdbcType=INTEGER}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.navigate.treat.beans.basic.ActivitySign" >
+        update activity_sign
+        <set >
+            <if test="userId != null" >
+                userId = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="activityId != null" >
+                activityId = #{activityId,jdbcType=BIGINT},
+            </if>
+            <if test="activityTime != null" >
+                activityTime = #{activityTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lng != null" >
+                lng = #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null" >
+                lat = #{lat,jdbcType=VARCHAR},
+            </if>
+            <if test="ctime != null" >
+                ctime = #{ctime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mtime != null" >
+                mtime = #{mtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="role != null" >
+                role = #{role,jdbcType=INTEGER},
+            </if>
+            <if test="signin != null" >
+                signin = #{signin,jdbcType=INTEGER},
+            </if>
+            <if test="singTime != null" >
+                singTime = #{singTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="supplyAmount != null" >
+                supplyAmount = #{supplyAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="supply != null" >
+                supply = #{supply,jdbcType=INTEGER},
+            </if>
+            <if test="depositAmount != null" >
+                depositAmount = #{depositAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="deposit != null" >
+                deposit = #{deposit,jdbcType=INTEGER},
+            </if>
+            <if test="bePunished != null" >
+                bePunished = #{bePunished,jdbcType=INTEGER},
+            </if>
+            <if test="punished != null" >
+                punished = #{punished,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from activity_sign
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.navigate.treat.beans.basic.ActivitySignQueryHelper" >
+        delete from activity_sign
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+</mapper>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+ <head>
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    ## 手机号,email无超链接
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title>关于担保金和赴约补贴说明</title>
+ 	##<link href="$static_resource/css/eidt.css" rel="stylesheet" type="text/css" />
+ 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	## 适合手机窗口大小
+	<meta name="viewport"	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	##控制图片样式,不可以去掉
+	<style type="text/css">
+	</style>
+</head>
+<body>
+<div  id="baseInfoVue">
+	关于担保金和赴约补贴说明</br>
+	担保金:</br>
+    1.放置担保金,可以保证你的约会成功率,以免被放鸽子.同时报名者也需放置与你等额的担保金.</br>
+    2.若一方违约,其担保金将会全额补偿给另一方.若双方违约或双方成功见面,担保金将全额返回给双方.</br>
+ </br>
+    补贴金:</br>
+        1.放置更多的补贴金将会显著增加活动的报名人数.补贴金将会以一种"礼物"的方式赠与约会对象.</br>
+        2.若双方成功见面,补贴金将会全额补贴给对方.反之,则全额返还.</br>
+</div>
+</body>
+</html>
+

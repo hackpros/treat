@@ -1,0 +1,25 @@
+ #parse( 'global/header.vm' )
+ <head>
+  <meta charset="utf-8" />
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title></title>
+ 	<link href="$static_resource/css/gift.css" rel="stylesheet" type="text/css" />
+</head>
+<body >
+<div class="fail-bg" >
+      <div class="content">
+        <div class="title">礼物抢光</div>
+        <div class="des">不要怪wo，因为你帅/美的拖网速</div>
+        <div class="des1">将礼物变现，不服来请客</div>
+    </div>
+    <div class="down-info">
+        <div class="down-but"><a href="#">下载app 马上体现</a></div>
+    </div>
+</div>
+</body>
+</html>
+
+

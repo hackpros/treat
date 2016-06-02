@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">  
+	<appenders>  
+		
+		<Console name="Console" target="SYSTEM_OUT">  
+			<!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+			<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+			<!--这个都知道是输出日志的格式-->
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/> 
+		</Console> 
+	
+		<!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+		<RollingFile name="RollingFile" fileName="f:/log4j2/allLog/app.log" filePattern="f:/log4j2/allLog/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log">
+		    <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+		    <SizeBasedTriggeringPolicy size="50MB"/>
+		</RollingFile>
+		
+		
+		<!-- 针对特殊的类或包打印自定义的日志 -->
+		<RollingFile name="running-log" fileName="f:/log4j2/running-log/app.log" filePattern="f:/log4j2/running-log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log">
+		    <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+		    <SizeBasedTriggeringPolicy size="50MB"/>
+		</RollingFile>
+	 
+		<!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用
+		 
+		<File name="errors" fileName="f:/log4j2/errorsLog/errors.log">
+		    <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+		    <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+		</File>
+	
+		<File name="error" fileName="f:/log4j2/error/errorLog.log" append="false">
+		    <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+		</File>
+	
+		<File name="trace" fileName="f:/log4j2/trace/traceLog.log" append="false">
+		    <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+		</File>
+		
+		-->
+	</appenders>  
+	<loggers>  
+		<!-- 
+		 输出的log都是在ERROR level上的，log4j定义了8个级别的log（除去OFF和ALL，可以说分为6个级别），
+		 优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、 ALL。
+		 如果将log level设置在某一个级别上，那么比此级别优先级高的log都能打印出来。
+		 例如，如果设置优先级为WARN，那么OFF、FATAL、ERROR、WARN 4个级别的log能正常输出，
+		 而INFO、DEBUG、TRACE、 ALL级别的log则会被忽略。
+		 log4j默认的优先级为ERROR。
+		 -->
+		 <!-- 
+		 root标签为log的默认输出形式，如果一个类的log没有在loggers中明确指定其输出lever与格式，那么就会采用root中定义的格式
+		  -->
+	    <root level="trace">  
+		    <appender-ref ref="Console"/>
+		    <appender-ref ref="RollingFile"/>
+		    <appender-ref ref="errors"/>
+	    </root>  
+		<!-- 针对特定的类或包，打印自定义级别的日志 additivity为true时，root日志也会打印出该自定义的日志，false时root日志不再打印  -->
+		<Logger name="com.navigate.treat.controller.UserManagerController" level="debug" additivity="true">
+		   <AppenderRef ref="running-log" />
+		</Logger>
+	</loggers>  
+</configuration>

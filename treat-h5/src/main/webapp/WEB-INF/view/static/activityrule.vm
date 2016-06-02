@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+ <head>
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    ## 手机号,email无超链接
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <title>活动规则</title>
+ 	##<link href="$static_resource/css/eidt.css" rel="stylesheet" type="text/css" />
+ 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	## 适合手机窗口大小
+	<meta name="viewport"	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	##控制图片样式,不可以去掉
+	<style type="text/css">
+	</style>
+</head>
+<body>
+<div  id="baseInfoVue">
+取消活动＆担保金、补偿金</br>
+距活动开始时间小于3小时,取消活动需将担保金补偿给对方。</br>
+距活动开始时间大于3小时,取消活动无需补偿担保金,正常返还。</br>
+ </br>
+ </br>
+签到时间&担保金、补偿金</br>
+签到时间为活动开始时间前后各加1.5小时,共3小时。</br>
+签到成功即返还担保金。</br>
+双方签到成功,各自返还担保金,赠送对方补偿金。</br>
+双方违约,亦各自返还担保金和补偿金。</br>
+ </br>
+</div>
+</body>
+</html>
+
+
+
+
+
+

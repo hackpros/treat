@@ -1,0 +1,52 @@
+#import <Foundation/Foundation.h>
+{
+	NSString* nickName;
+	NSNumber* sex;
+	NSNumber* locked;
+	NSString* treamNum;
+	NSDate* birthday;
+	NSNumber* crown;
+	NSNumber* pigeon;
+	NSNumber* height;
+	NSString* headIcon;
+	NSString* mobile;
+	NSString* password;
+	NSString* userSource;
+	NSString* captcha;
+	NSNumber* vocation;
+	NSString* corpName;
+	NSString* school;
+	NSString* signature;
+	NSNumber* interest;
+	NSNumber* cityCode;
+	NSNumber* provinceCode;
+	NSNumber* allureValue;
+	NSNumber* techniqueValue;
+	NSNumber* balance;
+	NSNumber* technique;
+}
+@property (nonatomic)NSString* nickName;
+@property (nonatomic)NSNumber* sex;
+@property (nonatomic)NSNumber* locked;
+@property (nonatomic)NSString* treamNum;
+@property (nonatomic)NSDate* birthday;
+@property (nonatomic)NSNumber* crown;
+@property (nonatomic)NSNumber* pigeon;
+@property (nonatomic)NSNumber* height;
+@property (nonatomic)NSString* headIcon;
+@property (nonatomic)NSString* mobile;
+@property (nonatomic)NSString* password;
+@property (nonatomic)NSString* userSource;
+@property (nonatomic)NSString* captcha;
+@property (nonatomic)NSNumber* vocation;
+@property (nonatomic)NSString* corpName;
+@property (nonatomic)NSString* school;
+@property (nonatomic)NSString* signature;
+@property (nonatomic)NSNumber* interest;
+@property (nonatomic)NSNumber* cityCode;
+@property (nonatomic)NSNumber* provinceCode;
+@property (nonatomic)NSNumber* allureValue;
+@property (nonatomic)NSNumber* techniqueValue;
+@property (nonatomic)NSNumber* balance;
+@property (nonatomic)NSNumber* technique;
+@end

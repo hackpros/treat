@@ -1,0 +1,26 @@
+
+#macro(tree $sysOpt)
+	<ul>
+    	#foreach( $sys in $sysOpt)
+			<li onclick="getChildList($sys.ladder,$sys.pid)">$sys.opionComments</li>
+    	#end
+	</ul>
+
+#end
+
+<ul class="easyui-tree">
+<li>
+		<span onclick="getChildList(1,0)">系统选项 </span>
+		<ul>
+			#foreach( $sys in $rows)
+					<li>
+						<span onclick="getChildList($sys.ladder,$sys.pid)">$sys.opionComments</span>
+						#tree($sys.children)
+					</li>
+			#end			
+		</ul>
+	</li>
+</ul>
+
+			
+	
