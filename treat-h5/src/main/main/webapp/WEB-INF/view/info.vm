@@ -1,9 +1,0 @@
-</html>
-#parse( 'global/header.vm' )
-<script type="text/javascript">
-</script>
-<body class="easyui-layout">
-	$!ICResponse.code
-	$!ICResponse.description
-</body>
-</html>
