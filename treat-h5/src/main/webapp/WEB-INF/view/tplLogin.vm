@@ -2,7 +2,7 @@
 <hr/>
 	<div title="Home" style="border:1px solid red">
 		<div class="cs-home-remark">
-			<h1>我请客-微信登录测试</h1> <br>
+			<h1>微信登录测试</h1> <br>
 				<ul id="tt2">1 ${session.getAttribute("tpl")}</ul>
 				<ul id="tt2">2 ${session.getAttribute("tplOpen")}</ul>
 				<br>
@@ -29,8 +29,8 @@
 					<a href="#">已经登录了，可以点先赞了<a/>
 				#end	
 			</br>
-				<a target="_blank" href="
-				http://www.wqk520.com/treat-h5/wechat/callback.html?code=0316169e11b16cd7989dabd25c40924x&state=state">登录回调<a/>
+				##<a target="_blank" href="
+				##http://www.wqk520.com/treat-h5/wechat/callback.html?code=0316169e11b16cd7989dabd25c40924x&state=state">登录回调<a/>
 				
     	</div>
 	</div>
